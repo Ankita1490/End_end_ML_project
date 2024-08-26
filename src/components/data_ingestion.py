@@ -6,6 +6,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation, DataTransformationConfig
+from src.components.model_trainer import ModelTrainer
 
 @dataclass
 class DataIngestionConfig:
@@ -49,3 +50,8 @@ if __name__ == "__main__":
                                         data_ingestion_obj.ingestion_config.train_data_path, 
                                         data_ingestion_obj.ingestion_config.test_data_path
                                         )
+    model_trainer = ModelTrainer()
+    
+    best_model =model_trainer.initiate_model_trainer(train_arr_,test_arr_)
+    print(f"The best model:{best_model}")
+    

@@ -25,7 +25,7 @@ class DataTransformation:
         self.data_transformation_config = DataTransformationConfig()
      
     def get_data_transformer_obj(self, categorical_feature:List, numerical_feature:List):
-        """,
+        """
         This function is responsible for data transformation
         """
         try:
