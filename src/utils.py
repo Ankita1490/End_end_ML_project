@@ -25,13 +25,16 @@ def train_test_split(train_arr, test_arr):
 
 def creating_model_parameters(model_parameter: configparser):
 
-    params ={}
-    for key, values in model_parameter.items():
+    params = {}
+    for key, values in model_parameter.items():        
         model_name, param = key.split('_', 1)
-        values = values.split(',')
+        print(model_name)
+        if model_name == 'decisiontree':
+            values = values.split(',')
+        else:
+            values = [val for val in values.split(',')]
         if model_name not in params:
             params[model_name] ={}
-            
         params[model_name][param] = [float(val) if '.' in val else int(val) if val.isdigit() else val for val in values]
     return params
 

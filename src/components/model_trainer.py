@@ -16,8 +16,9 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object, evalute_model, train_test_split, creating_model_parameters
 import configparser
+from collections import OrderedDict
 
-config = configparser.ConfigParser()
+config = configparser.ConfigParser(dict_type=OrderedDict)
 config.read('src\config.ini')
 DEFAULT_PATH = config["DEFAULT_PATH"]["folder"]
 
@@ -36,12 +37,12 @@ class ModelTrainer:
             X_train, y_train, X_test, y_test = train_test_split(train_array, test_array)
             logging.info(f"X_train:{X_train.shape},y_train:{y_train.shape}, X_test:{X_test.shape}, y_test:{y_test.shape}")
             models ={
-                "RandomForest": RandomForestRegressor(),
-                "DecisionTree": DecisionTreeRegressor(),
-                "GradientBoosting": GradientBoostingRegressor(),
-                "LinearRegression" : LinearRegression(),
-                "XGBRegressor":XGBRegressor(),
-                "AdaBoostRegressor": AdaBoostRegressor(),
+                "randomforest": RandomForestRegressor(),
+                "decisiontree": DecisionTreeRegressor(),
+                "gradientboosting": GradientBoostingRegressor(),
+                "linearregression" : LinearRegression(),
+                "xgbregressor":XGBRegressor(),
+                "adaboostregressor": AdaBoostRegressor(),
             }
             model_parameter = config["MODEL_PARAMETER"]
             params = creating_model_parameters(model_parameter)
